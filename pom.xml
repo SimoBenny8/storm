@@ -285,6 +285,11 @@
         <license.skipAggregateDownloadLicenses>true</license.skipAggregateDownloadLicenses>
         <license.thirdPartyFilename>DEPENDENCY-LICENSES</license.thirdPartyFilename>
         <license.outputDirectory>${project.basedir}</license.outputDirectory>
+		
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<aggregate.report.dir>moduleForJacoco/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
         <!-- dependency versions -->
         <clojure.version>1.10.0</clojure.version>
@@ -365,10 +370,15 @@
 
         <!-- see intellij profile below... This fixes an annoyance with intellij -->
         <provided.scope>provided</provided.scope>
+		<sonar.projectKey>simobenny8:${project.groupId}:${project.artifactId}</sonar.projectKey>
+		<sonar.links.homepage>https://github.com/simobenny8/storm</sonar.links.homepage>
+		<sonar.links.ci>https://travis-ci.com/simobenny8/storm</sonar.links.ci>
+		<sonar.links.scm>https://github.com/simobenny8/storm</sonar.links.scm>
+		<sonar.links.issue>https://github.com/simobenny8/storm/issues</sonar.links.issue>
     </properties>
 
     <modules>
-        <module>storm-shaded-deps</module>
+		<module>storm-shaded-deps</module>
         <module>storm-checkstyle</module>
         <module>storm-multilang/javascript</module>
         <module>storm-multilang/python</module>
@@ -382,6 +392,7 @@
         <module>storm-clojure</module>
         <module>storm-clojure-test</module>
         <module>storm-submit-tools</module>
+		<module>moduleForJacoco</module>
     </modules>
 
     <dependencies>
@@ -397,6 +408,13 @@
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		
     </dependencies>
 
     <profiles>
@@ -405,6 +423,28 @@
             If you use intellij, enable this profile in your IDE.
             It should make life easier.
         -->
+		<profile>
+			<id>coverage</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<executions>
+						<execution>
+							<id>prepare-agent</id>
+							<goals>
+							<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
         <profile>
             <id>intellij</id>
             <properties>
@@ -1215,6 +1255,16 @@
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.7.0.1746</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.6</version>
+				</plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
@@ -1450,10 +1500,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                 <version>3.8.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
