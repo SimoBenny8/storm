@@ -28,6 +28,10 @@
     <artifactId>multilang-python</artifactId>
     <packaging>jar</packaging>
     <name>multilang-python</name>
+	
+	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 
     <build>
         <plugins>

@@ -30,6 +30,10 @@
     <packaging>jar</packaging>
     <name>Storm Client</name>
     <description>The client side (including worker) of Storm implementations.</description>
+	
+	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 
     <dependencies>
         <!-- logging -->

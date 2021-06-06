@@ -28,6 +28,10 @@
     <artifactId>multilang-javascript</artifactId>
     <packaging>jar</packaging>
     <name>multilang-javascript</name>
+	
+	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 
     <build>
         <plugins>

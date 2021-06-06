@@ -24,6 +24,10 @@
     </parent>
 
     <artifactId>storm-clojure-test</artifactId>
+	
+	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 
     <dependencies>
         <dependency>
