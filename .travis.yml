@@ -8,11 +8,9 @@ addons:
   sonarcloud:
     organization: "simobenny8"
     token:
-        secure:"gEchOaQz2IVoHznjKOO+2VK2LafomyDHoGD2QEznDMZz8v8rM+k16LHwEiRkfYmnJBWyAPjOFLh/Y/1+r0KWbjiIwjW2Cig2fis1eaXpVQziVpyN08uDTf5e39O2AHJuv1oniGji1a2ekGR5qh+jzwpgtGZzOYtGVbviq2tsqA+85r12UXcQ54UyXmEEKJ/ik0oT74vLY5pM8uv/g6EVYpfuehDUAxk/RGQ85k3PiHhxbkufvGgJkBhd7e+ncxsEkzvFwBOwufh+fjK6IWgvSGf3wJtgl1uivsS9EV7olxZFaxl8krSUB+A5T1Yo05u+v1zm3YgS84f4Md4LYI1KzJxR/nSSCSe8LSUdMePhSB36TcEcfKxsK7VL8L4r053Gfy25hkcyjPgjXLev06TfzyFDz6zYSdvG1bSHecIpIuzNX4qEctgpWv9YaQpxRycpRdrXt74fX69d0A8+KWGcBPUiFjKj/E8gFiLFy4AtbCjC2f2NeAhVBh+3VJq3+zw5wszUctODMHNDwS0Vq4+KH5AiTIlhESxXcJ5SD9Ox+gIASVtZWux+aUyjHKuxdIfg879RsA+AgSLm+PCXk3Uvq5Aqs51hYl5p6an0YCyOPliD6uJnHcOJsgHnCXQa2Hpqz6+htpupfIEkeOPu+EL+9jQQP4Ys+1fortqXzWGd4vI="
-script:
+        secure: "Syp5ygt6o5CoSXwFYmYNUqI2ENw/HeL+5oxGQwriWbmk8yUzpRIvsasinDIx2mvU8PqfBXjO8SOiGlH4Q5EMdqfCAfaGKxq/uPGj4sdHFzjni/6btXnH+BbVzdmhJZVvEf8s4rko9v6PJVRFpfa7/Yl2nm3sDJ1lJi5+kkMGenNdsI/S8Z0yyvAmGwu/LI6LI4wVFzes7qzBYK9f6J0RTWng9tD4x2KnAHAxzdOYxpz/KOzohdbZg+KW4p5689P75YL67MfbZ/M7AzYzlegcHOIEIOe2BXFSuOvBUfFWE0Nwk1hNF1bJfx3JqKV8QGjFMi0F95nwVY43p8sTkcbj4sQQ1FWpUQhqzx7bqCIQTxPK+OdQxdUuxRHj8GMSARkNJNz7fbZGqh7Kr8A6z9XfNy7HsxhdSW43K4/8L6mohLgwVxYjaCXuIoQtdYy0GFVrVGX5CBhAlE4ZvLhUSxnoz4DAwrzJlFiIi98c3GMyCt19Z8qdu3QqFN8g0DFCCfatSM92iyLLJOG5RMAk/Ycfg2BXBW1dWdqCM24yuZYJqfxSoBj88SOJaw01pRJK5PkjDI7jctPhWHMOHdmXM4EFMtkntPEBMk/foNnGT/TuN2kC3PILvvo3iASxepkAiJAQ2TyeUEoterSpzFnu7jap7Uhh1hvcDdxfPvF/mIj8DCo="
+script: 
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  #- mvn -Dsonar.coverage.jacoco.xmlReportPaths=C:\Users\Simone Benedetti\Documents\Programmazione JAVA\storm\moduleForJacoco\target\site\jacoco-aggregate\jacoco.xml clean verify sonar:sonar 
-  # - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=SimoBenny8_storm
   - mvn clean verify sonar:sonar
 
 
