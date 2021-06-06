@@ -31,27 +31,27 @@
     </dependency>
 	<dependency>
       <groupId>org.sonarqube</groupId>
-      <artifactId>storm-multilang/javascript</artifactId>
+      <artifactId>multilang-javascript</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 	<dependency>
       <groupId>org.sonarqube</groupId>
-      <artifactId>storm-multilang/python</artifactId>
+      <artifactId>multilang-python</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 	<dependency>
       <groupId>org.sonarqube</groupId>
-      <artifactId>storm-multilang/ruby</artifactId>
+      <artifactId>multilang-ruby</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 	<dependency>
       <groupId>org.sonarqube</groupId>
-      <artifactId>storm-buildtools/maven-shade-clojure-transformer</artifactId>
+      <artifactId>maven-shade-clojure-transformer</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 	<dependency>
       <groupId>org.sonarqube</groupId>
-      <artifactId>storm-buildtools/storm-maven-plugins</artifactId>
+      <artifactId>storm-maven-plugins</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 	<dependency>
