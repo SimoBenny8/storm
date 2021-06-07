@@ -3,6 +3,9 @@ language: java
 notifications:
  email: false
 
+node_js:
+  - "10"
+
 addons:
   sonarcloud:
     organization: "simobenny8"
