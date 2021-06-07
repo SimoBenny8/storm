@@ -29,9 +29,6 @@
     <packaging>jar</packaging>
     <name>multilang-ruby</name>
 	
-	<properties>
-		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
-	</properties>
 
     <build>
         <plugins>
