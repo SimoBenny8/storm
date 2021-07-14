@@ -1207,7 +1207,12 @@
                     <configuration>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <excludedGroups>IntegrationTest | ${java.unit.test.exclude.groups}</excludedGroups>
-                        <argLine>-Xmx3g -XX:+HeapDumpOnOutOfMemoryError</argLine>
+                        <argLine>
+						-Xmx3g
+						-XX:+HeapDumpOnOutOfMemoryError
+						-javaagent:${basedir}/storm-client/test/resources/ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
+						-Xbootclasspath/p:${basedir}/storm-client/test/resources/ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
+						</argLine>
                         <trimStackTrace>false</trimStackTrace>
                         <forkCount>1.0C</forkCount>
                         <reuseForks>true</reuseForks>
