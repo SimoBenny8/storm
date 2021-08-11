@@ -1,8 +1,5 @@
 package org.apache.storm.topology;
 
-import java.io.File;
-import java.util.*;
-
 import org.apache.storm.Config;
 import org.apache.storm.generated.GlobalStreamId;
 import org.apache.storm.generated.Grouping;
@@ -20,6 +17,8 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -98,7 +97,7 @@ public class TestWindowedBoltExecutor {
 
         TopologyBuilder builder = new TopologyBuilder();
         GeneralTopologyContext gtc = new GeneralTopologyContext(builder.createTopology(),
-                new Config(), new HashMap(), new HashMap(), new HashMap(), "") {
+                new Config(), new HashMap<>(), new HashMap<>(), new HashMap<>(), "") {
             @Override
             public Fields getComponentOutputFields(String componentId, String streamId) {
                 return new Fields(fieldName);
