@@ -285,11 +285,10 @@
         <license.skipAggregateDownloadLicenses>true</license.skipAggregateDownloadLicenses>
         <license.thirdPartyFilename>DEPENDENCY-LICENSES</license.thirdPartyFilename>
         <license.outputDirectory>${project.basedir}</license.outputDirectory>
-		
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<aggregate.report.dir>moduleForJacoco/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<maven.compiler.target>1.8</maven.compiler.target>
+	<maven.compiler.source>1.8</maven.compiler.source>
+	<aggregate.report.dir>moduleForJacoco/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
         <!-- dependency versions -->
         <clojure.version>1.10.0</clojure.version>
@@ -370,15 +369,15 @@
 
         <!-- see intellij profile below... This fixes an annoyance with intellij -->
         <provided.scope>provided</provided.scope>
-		<sonar.projectKey>simobenny8:${project.groupId}:${project.artifactId}</sonar.projectKey>
-		<sonar.links.homepage>https://github.com/simobenny8/storm</sonar.links.homepage>
-		<sonar.links.ci>https://travis-ci.com/simobenny8/storm</sonar.links.ci>
-		<sonar.links.scm>https://github.com/simobenny8/storm</sonar.links.scm>
-		<sonar.links.issue>https://github.com/simobenny8/storm/issues</sonar.links.issue>
+	<sonar.projectKey>simobenny8:${project.groupId}:${project.artifactId}</sonar.projectKey>
+	<sonar.links.homepage>https://github.com/simobenny8/storm</sonar.links.homepage>
+	<sonar.links.ci>https://travis-ci.com/simobenny8/storm</sonar.links.ci>
+	<sonar.links.scm>https://github.com/simobenny8/storm</sonar.links.scm>
+	<sonar.links.issue>https://github.com/simobenny8/storm/issues</sonar.links.issue>
     </properties>
 
     <modules>
-		<module>storm-shaded-deps</module>
+	    <module>storm-shaded-deps</module>
         <module>storm-checkstyle</module>
         <module>storm-multilang/javascript</module>
         <module>storm-multilang/python</module>
@@ -392,7 +391,7 @@
         <module>storm-clojure</module>
         <module>storm-clojure-test</module>
         <module>storm-submit-tools</module>
-		<module>moduleForJacoco</module>
+	    <module>moduleForJacoco</module>
     </modules>
 
     <dependencies>
@@ -433,6 +432,7 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.4</version>
 						<executions>
 						<execution>
 							<id>prepare-agent</id>
@@ -440,11 +440,18 @@
 							<goal>prepare-agent</goal>
 							</goals>
 						</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+						<execution>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                        </executions>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+
         <profile>
             <id>intellij</id>
             <properties>
@@ -566,7 +573,7 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
+	<profile>
             <id>sign</id>
             <build>
                 <plugins>
@@ -1207,13 +1214,6 @@
                     <configuration>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <excludedGroups>IntegrationTest | ${java.unit.test.exclude.groups}</excludedGroups>
-                        <argLine>
-						-Xmx3g
-						-XX:+HeapDumpOnOutOfMemoryError
-						-javaagent:${basedir}/storm-client/test/resources/ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
-						-Xbootclasspath/p:${basedir}/storm-client/test/resources/ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
-						</argLine>
-                        <trimStackTrace>false</trimStackTrace>
                         <forkCount>1.0C</forkCount>
                         <reuseForks>true</reuseForks>
                         <systemPropertyVariables>
@@ -1241,7 +1241,6 @@
                             <include>**/*.java</include>
                         </includes>
                         <groups>IntegrationTest</groups>
-                        <argLine>-Xmx1536m</argLine>
                     </configuration>
                     <executions>
                         <execution>
@@ -1291,25 +1290,35 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>2.5</version>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>3.12.0</version>
+                    <configuration>
+                        <rulesets>
+                            <ruleset>storm/pmd-ruleset.xml</ruleset>
+                        </rulesets>
+                        <includeTests>true</includeTests>
+                        <printFailingErrors>true</printFailingErrors>
+                        <excludes>
+                            <exclude>org/apache/storm/generated/**</exclude>
+                            <exclude>org/apache/storm/sql/parser/impl/**</exclude>
+                        </excludes>
+                    </configuration>
                     <executions>
                         <execution>
-                            <id>cleanup</id>
-                            <phase>clean</phase>
+                            <id>pmd-check</id>
                             <goals>
-                                <goal>clean</goal>
+                                <goal>check</goal>
                             </goals>
-                            <configuration>
-                                <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                                <filesets>
-                                    <fileset>
-                                        <directory>./logs/</directory>
-                                    </fileset>
-                                </filesets>
-                            </configuration>
                         </execution>
                     </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.storm</groupId>
+                            <artifactId>storm-checkstyle</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>com.theoryinpractise</groupId>
@@ -1435,7 +1444,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                 <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -1524,7 +1536,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
                 <configuration>
                     <reportsDirectories>
                         <file>${project.build.directory}/test-reports</file>

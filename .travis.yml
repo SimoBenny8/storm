@@ -1,0 +1,18 @@
+language: java
+
+notifications:
+ email: false
+
+before_install:
+  #- wget https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/nvm.sh -o ~/.nvm/nvm.sh
+  #- source ~/.nvm/nvm.sh
+  - nvm install --lts
+
+addons:
+  sonarcloud:
+    organization: "simobenny8"
+    token: 
+       secure: "AYMUDKsVbYaRUia2yb2GHAK/rLJdXR2J5DV3LYKnbUKtfw8Ve6MWYQ2wPWs9VGto+gQT5mgwiZJDk2c9xnwZguLL2AkR6iqNzJE7fqmx4mwi4N7fTJuQKhd4/qfwyqJkDYYfGOCwSmE5fUHZkxM55Ex5mKKskLDYhXH+uYYO6t5Dg1aFQQeZKRlSoRQCavCG5FoekCDmUojAxjjpA59zvSynB1V8QOxSxYi7sCTw8YQATH6Jo5MAC38wznN9kMbglleJD/fK1ExntzL2EYKgg2psr0cQAg4xJSIJ+wpk9LbMN/w1rMLnhko+9qX35sOBZMiSx2rybrWaklXGDF1VPkZm8MI94isQHdm7b1JgB6AKTBfRBzCwloC3oRfc6r8xAsk0Uc8SSzdyFNn4Q3Dtwfj1uH9MEyTBnATQ6EEzmLriK+lOQThH58L4Fig2iu/Ahu57hqi3alsk9Cs9EvDN54XDh4exhH8WBHNCiQbth2JwxmLdZs1HMCD59R/m7CGlyP4b3gScbpf6Ki7V7fdwXy3ObobucpioCDGUQUkJjN566bJNgxNO9DVXaCY2IVFRIEkzGFi4uYcFUvhohB2SlOy1Lc5R9RLdkjl5s27ECWnihemrWPPIYCc60Hk5b1/8RiwCaUHeivG3n6Pg1xa0MdNpPPbKcPLuL6akhJLQDac="  
+script:  
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -Dsonar.projectKey=SimoBenny8_storm
