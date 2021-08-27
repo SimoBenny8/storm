@@ -269,14 +269,14 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>1.5.2</version>
+            <version>1.6.9</version>
             <configuration>
               <targetClasses>
-                <param>org.apache.storm.topology.StatefulBoltExecutor</param>
-                <param>org.apache.storm.topology.WindowedBoltExecutor</param>
+                <param>org.apache.storm.coordination.CoordinatedBolt*</param>
+                <param>org.apache.storm.topology.WindowedBoltExecutor*</param>
               </targetClasses>
               <targetTests>
-                <param>org.apache.storm.topology.TestStatefulBoltExecutor</param>
+                <param>org.apache.storm.coordination.TestCoordinatedBolt</param>
                 <param>org.apache.storm.topology.TestWindowedBoltExecutor</param>
               </targetTests>
               <avoidCallsTo>
@@ -288,7 +288,8 @@
             </configuration>
             <executions>
               <execution>
-                <id>mutation-coverage</id>
+                <id>pit-report</id>
+                  <phase>test</phase>
                 <goals>
                   <goal>mutationCoverage</goal>
                 </goals>

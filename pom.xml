@@ -1038,6 +1038,13 @@
                 <version>${thrift.version}</version>
                 <scope>compile</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>${thrift.version}</version>
+                <scope>test</scope>
+            </dependency>
+
             <!-- used by examples/storm-starter -->
             <dependency>
                 <groupId>org.junit</groupId>
@@ -1247,44 +1254,6 @@
                             <goals>
                                 <goal>integration-test</goal>
                                 <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <!--To support checkstyle goals. For example: "mvn checkstyle:checkstyle"-->
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.storm</groupId>
-                            <artifactId>storm-checkstyle</artifactId>
-                            <version>${project.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.puppycrawl.tools</groupId>
-                            <artifactId>checkstyle</artifactId>
-                            <!-- If you change this, you should also update the storm_checkstyle.xml file to be
-                            based on the google_checks.xml from the version of checkstyle you are choosing. -->
-                            <version>8.2</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                            <id>validate</id>
-                            <phase>validate</phase>
-                            <configuration>
-                                <configLocation>storm/storm_checkstyle.xml</configLocation>
-                                <encoding>UTF-8</encoding>
-                                <failOnViolation>true</failOnViolation>
-                                <logViolationsToConsole>true</logViolationsToConsole>
-                                <consoleOutput>true</consoleOutput>
-                                <outputFile>target/checkstyle-violation.xml</outputFile>
-                                <violationSeverity>warning</violationSeverity>
-                            </configuration>
-                            <goals>
-                                <goal>check</goal>
                             </goals>
                         </execution>
                     </executions>
