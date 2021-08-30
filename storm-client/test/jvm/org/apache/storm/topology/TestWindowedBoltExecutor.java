@@ -148,7 +148,7 @@ public class TestWindowedBoltExecutor {
         for (long ts : timestamps) {
 
             if(conf.containsKey(Config.TOPOLOGY_BOLTS_LATE_TUPLE_STREAM)){
-                assertThrows(NullPointerException.class, () -> executor.execute(new TupleImpl(gtc,new Values(ts), this.srcComponent,this.taskId,this.componentId)));
+               assertThrows(NullPointerException.class, () -> executor.execute(new TupleImpl(gtc,new Values(ts), this.srcComponent,this.taskId,this.componentId)));
             }else {
                 executor.execute(new TupleImpl(gtc, new Values(ts), this.srcComponent, this.taskId, this.componentId));
             }

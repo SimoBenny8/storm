@@ -67,11 +67,6 @@ public class TestCoordinatedBolt {
         inputs.add(new TestInput("srcTest","streamTest",-1,objectList,CoordinatedBolt.SourceArgs.all(),CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest","streamTest")));
 
 
-
-
-
-
-
         return inputs;
 
     }
@@ -115,6 +110,7 @@ public class TestCoordinatedBolt {
 
 
         TupleImpl rec = new TupleImpl(gtc, this.data, this.srcComponent, 1, this.streamId);
+
 
         cb.execute(rec);
 
